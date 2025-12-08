@@ -1,0 +1,26 @@
+{
+  "name": "@veldore/root",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Form Validation Library For Vue",
+  "author": "Istiauk <istiuak.0@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/author/library#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/author/library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/author/library/issues"
+  },
+  "scripts": {
+    "playground:dev": "pnpm --filter @veldora/playground dev",
+    "i:all": "pnpm --recursive i",
+    "clean": "find ./ -name node_modules -type d -exec rm -rf {} +",
+    "core:dev": "pnpm --filter @veldora/core dev",
+    "core:build": "pnpm --filter @veldora/core build"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}
