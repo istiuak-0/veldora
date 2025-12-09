@@ -21,9 +21,13 @@
     "build": "tsdown",
     "dev": "tsdown --watch"
   },
+  "peerDependencies": {
+    "vue": "catalog:"
+  },
   "devDependencies": {
     "tsdown": "^0.17.0",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vue": "catalog:"
   },
   "publishConfig": {
     "exports": {

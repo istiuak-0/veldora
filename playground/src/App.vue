@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { fn } from '@veldora/core';
-import { onMounted } from 'vue';
+import { veldora } from '@veldora/core';
 
-onMounted(() => {
-  console.log(fn());
+veldora.createForm({
+  name:{
+    initialValue:'',
+    rules:['email','required']
+  }
 });
 </script>
 <template></template>
