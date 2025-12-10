@@ -1,10 +1,13 @@
-import type { FormConfig, RuleCallback } from './types';
-import { ref } from 'vue';
+import type { FieldConfig, RuleCallback } from './types';
+import { ref, type Ref } from 'vue';
+
 class Veldora {
   private rules: Map<string, RuleCallback> = new Map();
 
-  createForm(config: FormConfig) {
-    return new Form(config);
+  createForm<T extends Record<string, FieldConfig>>(config: T) {
+    return new Form(config) as Form & {
+      [K in keyof T]: string;
+    };
   }
 
   addRule<K extends string>(name: K, callback: RuleCallback) {
@@ -14,18 +17,15 @@ class Veldora {
 
 export const veldora = new Veldora();
 
-
-
 class Form {
-  [key: string]: any;
-  private _refs: Map<string, any> = new Map();
+  private _refs: Map<string, Ref<string>> = new Map();
 
-  constructor(config: FormConfig) {
+  constructor(config: Record<string, FieldConfig>) {
+    // this.data = {} as Record<K, any>;
 
-const fields= Object.keys(config)
+    const fields = Object.keys(config);
 
-
-fields.forEach(field => {
+    fields.forEach(field => {
       const fieldConfig = config[field];
 
       if (!fieldConfig) {
@@ -35,6 +35,7 @@ fields.forEach(field => {
       const valueRef = ref(fieldConfig.initialValue);
       this._refs.set(field, valueRef);
 
+      // this.data[field]= valueRef;
 
       Object.defineProperty(this, field, {
         get() {
@@ -44,7 +45,7 @@ fields.forEach(field => {
           valueRef.value = newValue;
         },
         enumerable: true,
-        configurable: true
+        configurable: true,
       });
     });
   }

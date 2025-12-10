@@ -7,6 +7,11 @@ const registerForm = veldora.createForm({
     initialValue: '',
     rules: ['email', 'required'],
   },
+
+  age: {
+    initialValue: '',
+    rules: ['required'],
+  },
 });
 
 onMounted(() => {
