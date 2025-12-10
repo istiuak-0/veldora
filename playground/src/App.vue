@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { veldora } from '@veldora/core';
+import { onMounted } from 'vue';
 
-veldora.createForm({
-  name:{
-    initialValue:'',
-    rules:['email','required']
-  }
+const registerForm = veldora.createForm({
+  name: {
+    initialValue: '',
+    rules: ['email', 'required'],
+  },
+});
+
+onMounted(() => {
+  console.log(registerForm.name);
 });
 </script>
-<template></template>
+<template>
+  <input type="text" v-model="registerForm.name" />
+  <p>{{ registerForm.name }}</p>
+</template>
