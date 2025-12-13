@@ -1,24 +1,33 @@
 <script setup lang="ts">
-import { veldora } from '@veldora/core';
-import { onMounted } from 'vue';
+import { Inject, veldora } from '@veldora/core';
+import { onMounted, ref, watch } from 'vue';
+import { UserService } from './user.service';
 
-const registerForm = veldora.createForm({
-  name: {
-    initialValue: '',
-    rules: ['email', 'required'],
-  },
+const userService = Inject(UserService);
 
-  age: {
-    initialValue: '',
-    rules: ['required'],
-  },
-});
+// const registerForm = veldora.createForm({
+//   name: {
+//     initialValue: '',
+//     rules: ['email', 'required'],
+//   },
+
+//   age: {
+//     initialValue: '',
+//     rules: ['required'],
+//   },
+// });
 
 onMounted(() => {
-  console.log(registerForm.name);
+  //console.log(registerForm.name);
+
+  console.log(userService.user.value);
 });
 </script>
 <template>
-  <input type="text" v-model="registerForm.name" />
-  <p>{{ registerForm.name }}</p>
+  <p>{{ userService.user }}</p>
+
+  <!-- <input type="text" v-model="registerForm.name" />
+  <p>{{ registerForm.name }}</p> -->
+
+  <button @click="() => userService.data.value++">{{ userService.data }}</button>
 </template>

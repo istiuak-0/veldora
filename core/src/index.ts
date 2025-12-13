@@ -1,6 +1,10 @@
 import type { FieldConfig, RuleCallback } from './types';
 import { ref, type Ref } from 'vue';
 
+import { Provide, Inject } from './service';
+
+export { Provide, Inject };
+
 class Veldora {
   private rules: Map<string, RuleCallback> = new Map();
 
